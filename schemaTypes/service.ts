@@ -55,13 +55,29 @@ export const service = defineType({
       options: {hotspot: true},
     }),
     defineField({
-      name: 'link',
-      title: 'Посилання',
-      type: 'url',
-      validation: (Rule) =>
-        Rule.uri({
-          scheme: ['http', 'https', 'mailto', 'tel'],
+      name: 'button',
+      title: 'Кнопка',
+      type: 'object',
+      options: {
+        collapsible: true,
+        collapsed: false,
+      },
+      fields: [
+        defineField({
+          name: 'label',
+          title: 'Назва кнопки',
+          type: 'string',
         }),
+        defineField({
+          name: 'url',
+          title: 'Посилання',
+          type: 'url',
+          validation: (Rule) =>
+            Rule.uri({
+              scheme: ['http', 'https', 'mailto', 'tel'],
+            }),
+        }),
+      ],
     }),
     defineField({
       name: 'desktopImageSide',
