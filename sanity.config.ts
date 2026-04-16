@@ -25,10 +25,35 @@ export default defineConfig({
                   .filter('_type == "service"')
                   .defaultOrdering([{field: 'title', direction: 'asc'}]),
               ),
+            S.listItem()
+              .id('workingHours')
+              .title('Години роботи')
+              .child(
+                S.editor()
+                  .id('workingHours')
+                  .title('Години роботи')
+                  .schemaType('workingHours')
+                  .documentId('workingHours'),
+              ),
           ]),
     }),
     visionTool(),
   ],
+
+  document: {
+    newDocumentOptions: (prev, {creationContext}) => {
+      if (creationContext.type === 'global') {
+        return prev.filter((templateItem) => templateItem.templateId !== 'workingHours')
+      }
+      return prev
+    },
+    actions: (prev, context) => {
+      if (context.schemaType === 'workingHours') {
+        return prev.filter(({action}) => action !== 'duplicate')
+      }
+      return prev
+    },
+  },
 
   schema: {
     types: schemaTypes,
