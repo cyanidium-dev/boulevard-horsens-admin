@@ -35,24 +35,28 @@ export const service = defineType({
       title: 'Опис',
       type: 'text',
       rows: 4,
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'homePageImage',
       title: 'Зображення для головної сторінки',
       type: 'image',
       options: {hotspot: true},
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'servicesPageImageMobile',
       title: 'Зображення для сторінки послуг (мобільна версія)',
       type: 'image',
       options: {hotspot: true},
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'servicesPageImageDesktop',
       title: 'Зображення для сторінки послуг (десктоп)',
       type: 'image',
       options: {hotspot: true},
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'button',
@@ -62,18 +66,20 @@ export const service = defineType({
         collapsible: true,
         collapsed: false,
       },
+      validation: (Rule) => Rule.required(),
       fields: [
         defineField({
           name: 'label',
           title: 'Назва кнопки',
           type: 'string',
+          validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: 'url',
           title: 'Посилання',
           type: 'url',
           validation: (Rule) =>
-            Rule.uri({
+            Rule.required().uri({
               scheme: ['http', 'https', 'mailto', 'tel'],
             }),
         }),

@@ -26,6 +26,15 @@ export default defineConfig({
                   .defaultOrdering([{field: 'title', direction: 'asc'}]),
               ),
             S.listItem()
+              .title('Команда')
+              .schemaType('teamMember')
+              .child(
+                S.documentList()
+                  .title('Команда')
+                  .filter('_type == "teamMember"')
+                  .defaultOrdering([{field: 'name', direction: 'asc'}]),
+              ),
+            S.listItem()
               .id('workingHours')
               .title('Години роботи')
               .child(
