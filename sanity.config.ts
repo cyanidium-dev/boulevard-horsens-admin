@@ -38,6 +38,26 @@ export default defineConfig({
                   ]),
               ),
             S.listItem()
+              .id('homeFaq')
+              .title('FAQ для головної сторінки')
+              .child(
+                S.editor()
+                  .id('homeFaq')
+                  .title('FAQ для головної сторінки')
+                  .schemaType('homeFaq')
+                  .documentId('homeFaq'),
+              ),
+            S.listItem()
+              .id('servicesFaq')
+              .title('FAQ для сторінки послуг')
+              .child(
+                S.editor()
+                  .id('servicesFaq')
+                  .title('FAQ для сторінки послуг')
+                  .schemaType('servicesFaq')
+                  .documentId('servicesFaq'),
+              ),
+            S.listItem()
               .id('workingHours')
               .title('Години роботи')
               .child(
@@ -55,12 +75,15 @@ export default defineConfig({
   document: {
     newDocumentOptions: (prev, {creationContext}) => {
       if (creationContext.type === 'global') {
-        return prev.filter((templateItem) => templateItem.templateId !== 'workingHours')
+        return prev.filter(
+          (templateItem) =>
+            !['homeFaq', 'servicesFaq', 'workingHours'].includes(templateItem.templateId),
+        )
       }
       return prev
     },
     actions: (prev, context) => {
-      if (context.schemaType === 'workingHours') {
+      if (['homeFaq', 'servicesFaq', 'workingHours'].includes(context.schemaType)) {
         return prev.filter(({action}) => action !== 'duplicate')
       }
       return prev
