@@ -32,7 +32,10 @@ export default defineConfig({
                 S.documentList()
                   .title('Команда')
                   .filter('_type == "teamMember"')
-                  .defaultOrdering([{field: 'name', direction: 'asc'}]),
+                  .defaultOrdering([
+                    {field: 'order', direction: 'asc'},
+                    {field: 'name', direction: 'asc'},
+                  ]),
               ),
             S.listItem()
               .id('workingHours')
