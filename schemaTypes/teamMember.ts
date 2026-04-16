@@ -24,6 +24,13 @@ export const teamMember = defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'order',
+      title: 'Порядок в списку',
+      description: 'Менше число показується вище в списку.',
+      type: 'number',
+      validation: (Rule) => Rule.required().integer().min(0),
+    }),
   ],
   preview: {
     select: {
