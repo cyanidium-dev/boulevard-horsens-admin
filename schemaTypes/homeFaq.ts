@@ -16,7 +16,7 @@ export const homeFaq = defineType({
       hidden: true,
     }),
     defineField({
-      name: 'faq',
+      name: 'faqSection',
       title: 'FAQ',
       type: 'faqSection',
       validation: (Rule) => Rule.required(),
@@ -25,7 +25,7 @@ export const homeFaq = defineType({
   preview: {
     select: {
       title: 'title',
-      items: 'faq.items',
+      items: 'faqSection.items',
     },
     prepare({title, items}) {
       const count = Array.isArray(items) ? items.length : 0
