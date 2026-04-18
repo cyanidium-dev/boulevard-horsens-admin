@@ -78,6 +78,16 @@ export default defineConfig({
                   .schemaType('workingHours')
                   .documentId('workingHours'),
               ),
+            S.listItem()
+              .id('results')
+              .title('Слайдер Results для головної сторінки')
+              .child(
+                S.editor()
+                  .id('results')
+                  .title('Слайдер Results для головної сторінки')
+                  .schemaType('results')
+                  .documentId('results'),
+              ),
           ]),
     }),
     visionTool(),
@@ -88,13 +98,15 @@ export default defineConfig({
       if (creationContext.type === 'global') {
         return prev.filter(
           (templateItem) =>
-            !['homeFaq', 'servicesFaq', 'workingHours'].includes(templateItem.templateId),
+            !['homeFaq', 'results', 'servicesFaq', 'workingHours'].includes(
+              templateItem.templateId,
+            ),
         )
       }
       return prev
     },
     actions: (prev, context) => {
-      if (['homeFaq', 'servicesFaq', 'workingHours'].includes(context.schemaType)) {
+      if (['homeFaq', 'results', 'servicesFaq', 'workingHours'].includes(context.schemaType)) {
         return prev.filter(({action}) => action !== 'duplicate')
       }
       return prev
