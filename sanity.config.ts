@@ -67,6 +67,16 @@ export default defineConfig({
                           .schemaType('homeFaq')
                           .documentId('homeFaq'),
                       ),
+                    S.listItem()
+                      .id('homePageSeo')
+                      .title('SEO для головної сторінки')
+                      .child(
+                        S.editor()
+                          .id('homePageSeo')
+                          .title('SEO для головної сторінки')
+                          .schemaType('homePageSeo')
+                          .documentId('homePageSeo'),
+                      ),
                   ]),
               ),
             S.listItem()
@@ -95,6 +105,16 @@ export default defineConfig({
                           .schemaType('servicesFaq')
                           .documentId('servicesFaq'),
                       ),
+                    S.listItem()
+                      .id('servicesPageSeo')
+                      .title('SEO для сторінки послуг')
+                      .child(
+                        S.editor()
+                          .id('servicesPageSeo')
+                          .title('SEO для сторінки послуг')
+                          .schemaType('servicesPageSeo')
+                          .documentId('servicesPageSeo'),
+                      ),
                   ]),
               ),
             S.listItem()
@@ -116,7 +136,14 @@ export default defineConfig({
       if (creationContext.type === 'global') {
         return prev.filter(
           (templateItem) =>
-            !['homeFaq', 'results', 'servicesFaq', 'workingHours'].includes(
+            ![
+              'homeFaq',
+              'homePageSeo',
+              'results',
+              'servicesFaq',
+              'servicesPageSeo',
+              'workingHours',
+            ].includes(
               templateItem.templateId,
             ),
         )
@@ -124,7 +151,16 @@ export default defineConfig({
       return prev
     },
     actions: (prev, context) => {
-      if (['homeFaq', 'results', 'servicesFaq', 'workingHours'].includes(context.schemaType)) {
+      if (
+        [
+          'homeFaq',
+          'homePageSeo',
+          'results',
+          'servicesFaq',
+          'servicesPageSeo',
+          'workingHours',
+        ].includes(context.schemaType)
+      ) {
         return prev.filter(({action}) => action !== 'duplicate')
       }
       return prev
