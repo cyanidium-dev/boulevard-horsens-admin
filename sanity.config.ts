@@ -118,6 +118,18 @@ export default defineConfig({
                   ]),
               ),
             S.listItem()
+              .title('Подарункові сертифікати')
+              .schemaType('giftCard')
+              .child(
+                S.documentList()
+                  .title('Подарункові сертифікати')
+                  .filter('_type == "giftCard"')
+                  .defaultOrdering([
+                    {field: 'order', direction: 'asc'},
+                    {field: 'amount', direction: 'asc'},
+                  ]),
+              ),
+            S.listItem()
               .title('Статті блогу')
               .schemaType('blogPost')
               .child(
