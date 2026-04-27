@@ -19,19 +19,18 @@ export const giftCard = defineType({
       validation: (Rule) => Rule.required().max(160),
     }),
     defineField({
-      name: 'gradient',
-      title: 'Дизайн картки',
-      description: 'Градієнт банера на картці.',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Світлий беж', value: 'light'},
-          {title: 'Карамель', value: 'caramel'},
-          {title: 'Темний', value: 'dark'},
-        ],
-        layout: 'radio',
-      },
-      initialValue: 'light',
+      name: 'image',
+      title: 'Зображення картки',
+      description: 'Фото для банера. Підтримує hotspot для центрування.',
+      type: 'image',
+      options: {hotspot: true},
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt-текст',
+          type: 'string',
+        }),
+      ],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -75,11 +74,13 @@ export const giftCard = defineType({
       amount: 'amount',
       description: 'description',
       popular: 'popular',
+      media: 'image',
     },
-    prepare({amount, description, popular}) {
+    prepare({amount, description, popular, media}) {
       return {
         title: `${amount} kr`,
         subtitle: popular ? `★ ${description}` : description,
+        media,
       }
     },
   },
