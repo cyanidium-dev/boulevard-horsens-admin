@@ -1,5 +1,6 @@
 import {blogPost} from './blogPost'
 import {faqSection} from './faqSection'
+import {giftCard} from './giftCard'
 import {homeFaq} from './homeFaq'
 import {homePageSeo} from './homePageSeo'
 import {results} from './results'
@@ -15,6 +16,7 @@ import {workingHours} from './workingHours'
 export const schemaTypes = [
   blogPost,
   faqSection,
+  giftCard,
   homeFaq,
   homePageSeo,
   results,
