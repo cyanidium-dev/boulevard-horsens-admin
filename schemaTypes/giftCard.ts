@@ -34,6 +34,15 @@ export const giftCard = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'certificatePdf',
+      title: 'Файл сертифіката (PDF)',
+      description: 'Завантажте PDF-файл сертифіката.',
+      type: 'file',
+      options: {
+        accept: 'application/pdf',
+      },
+    }),
+    defineField({
       name: 'popular',
       title: 'Позначка «Mest populære»',
       type: 'boolean',
