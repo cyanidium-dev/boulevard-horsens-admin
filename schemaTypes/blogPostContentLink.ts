@@ -50,12 +50,12 @@ export const blogPostContentLink = defineType({
       type: 'string',
       options: {
         list: [
-          {value: 'primary', title: 'Основна (заповнена)'},
-          {value: 'outline', title: 'Контурна'},
+          {value: 'black', title: 'Чорна'},
+          {value: 'brown', title: 'Коричнева'},
         ],
         layout: 'radio',
       },
-      initialValue: 'primary',
+      initialValue: 'black',
       hidden: ({parent}) => parent?.displayAs !== 'button',
     }),
   ],
