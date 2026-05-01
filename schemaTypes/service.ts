@@ -31,11 +31,60 @@ export const service = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'description',
-      title: 'Опис',
+      name: 'hideOnHome',
+      title: 'Не показувати на головній',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'homePageDescription',
+      title: 'Текст для головної сторінки',
+      type: 'text',
+      rows: 4,
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const parent = context.parent as {hideOnHome?: boolean}
+          if (
+            parent?.hideOnHome !== true &&
+            (!value || !String(value).trim())
+          ) {
+            return 'Обовʼязково, якщо послугу показують на головній.'
+          }
+          return true
+        }),
+    }),
+    defineField({
+      name: 'servicesPageDescription',
+      title: 'Текст для сторінки послуг',
       type: 'text',
       rows: 4,
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'homePageOrder',
+      title: 'Порядок картки на головній',
+      description: 'Менше число — вище або лівіше у списку (залежить від верстки).',
+      type: 'number',
+      validation: (Rule) =>
+        Rule.integer()
+          .min(0)
+          .custom((value, context) => {
+            const parent = context.parent as {hideOnHome?: boolean}
+            if (
+              parent?.hideOnHome !== true &&
+              (value === undefined || value === null || Number.isNaN(value))
+            ) {
+              return 'Обовʼязково, якщо послугу показують на головній.'
+            }
+            return true
+          }),
+    }),
+    defineField({
+      name: 'servicesPageOrder',
+      title: 'Порядок секції на сторінці послуг',
+      description: 'Менше число — вище у списку секцій.',
+      type: 'number',
+      validation: (Rule) => Rule.required().integer().min(0),
     }),
     defineField({
       name: 'homePageImage',
