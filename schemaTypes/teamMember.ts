@@ -25,6 +25,13 @@ export const teamMember = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'link',
+      title: 'Посилання',
+      description:
+        'Необовʼязково: повний URL (наприклад профіль у соцмережах) або відносний шлях на сайті.',
+      type: 'string',
+    }),
+    defineField({
       name: 'order',
       title: 'Порядок в списку',
       description: 'Менше число показується вище в списку.',
