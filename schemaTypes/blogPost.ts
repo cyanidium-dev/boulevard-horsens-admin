@@ -77,7 +77,8 @@ export const blogPost = defineType({
       name: 'content',
       type: 'array',
       title: 'Основний контент',
-      description: 'Додайте контент статті: заголовки, параграфи, списки, зображення, таблиці',
+      description:
+        'Додайте контент статті: заголовки, параграфи, списки, зображення, таблиці, галерею, блок посилання (кнопка або текст)',
       of: [
         {
           type: 'block',
@@ -137,6 +138,12 @@ export const blogPost = defineType({
         {
           type: 'table',
           title: 'Таблиця',
+        },
+        {
+          type: 'blogPostImageGallery',
+        },
+        {
+          type: 'blogPostContentLink',
         },
       ],
     }),
