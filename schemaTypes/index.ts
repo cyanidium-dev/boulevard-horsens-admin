@@ -1,4 +1,6 @@
 import {blogPost} from './blogPost'
+import {blogPostContentLink} from './blogPostContentLink'
+import {blogPostImageGallery} from './blogPostImageGallery'
 import {faqSection} from './faqSection'
 import {giftCard} from './giftCard'
 import {homeFaq} from './homeFaq'
@@ -15,6 +17,8 @@ import {workingHours} from './workingHours'
 
 export const schemaTypes = [
   blogPost,
+  blogPostContentLink,
+  blogPostImageGallery,
   faqSection,
   giftCard,
   homeFaq,
